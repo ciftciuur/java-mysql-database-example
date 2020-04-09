@@ -9,3 +9,4 @@ db-example/target/classes/Main.class
 db-example/target/classes/print/PrintDbResultSet.class
 db-example/target/classes/query/InsertQueryApi.class
 db-example/target/classes/query/SelectQueryApi.class
+db-example/.idea/vcs.xml
