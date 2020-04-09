@@ -13,7 +13,7 @@ public class InsertQueryApi {
     /*
        Bu fonksiyon dışarıdan parametre olarak verılmıs olan kullanıcıyı veritabanına kayıt eder
     */
-    public static void insertRecord(Employee employee, Connection connection) {
+    public static void insertOneRecord(Employee employee, Connection connection) {
         try {
             if (employee != null) {//gönderilen kaydın boş olup olmamasına bakıldı
                 if (ConnectionValidate.validateConnection(connection)) {//baglantının basarılı ıle true
@@ -21,8 +21,9 @@ public class InsertQueryApi {
                 /*
                     TODO burada son kayıdı bulup idsini alıp yenı kayıt ekleren son kaydın id'sini +1 yapmak gereklı auto +1 yükselicek her personel kaydı
                  */
+                    //son eklenen kaydın ıdsını aldı 1 arttırıp yeni kayıt oluşturdu
+                    preparedStatement.setLong(1, SelectQueryApi.resultLastRecordId(connection) + 1);
 
-                    preparedStatement.setLong(1, 0);//TODO +1 işlemi burada gerekli
                     preparedStatement.setString(2, employee.getName());
                     preparedStatement.setString(3, employee.getLastName());
                     preparedStatement.setString(4, employee.getGender());
