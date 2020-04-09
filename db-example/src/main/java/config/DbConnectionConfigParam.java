@@ -1,6 +1,6 @@
 package config;
 
-public class DbConnectionConfig {
+public class DbConnectionConfigParam {
 
     private final static String DB_HOST = "jdbc:mysql://remotemysql.com:3306/BiEfcKCYFs?useSSL=false";
     private final static String DB_USERNAME = "BiEfcKCYFs";
@@ -22,4 +22,5 @@ public class DbConnectionConfig {
     public static String getJdbcDriver() {
         return JDBC_DRIVER;
     }
+
 }
