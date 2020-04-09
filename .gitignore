@@ -14,3 +14,12 @@ db-example/.idea/uiDesigner.xml
 db-example/target/classes/config/DbConnectionManagement.class
 *.class
 db-example/target/classes/META-INF/db-example.kotlin_module
+db-example/.idea/modules.xml
+db-example/.idea/libraries/Maven__org_mongodb_mongodb_driver_core_3_4_2.xml
+db-example/.idea/libraries/Maven__org_mongodb_mongodb_driver_3_4_2.xml
+db-example/.idea/libraries/Maven__org_mongodb_bson_3_4_2.xml
+db-example/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_48.xml
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/java-database-example.iml
