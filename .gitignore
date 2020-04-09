@@ -12,3 +12,5 @@ db-example/target/classes/query/SelectQueryApi.class
 db-example/.idea/vcs.xml
 db-example/.idea/uiDesigner.xml
 db-example/target/classes/config/DbConnectionManagement.class
+*.class
+db-example/target/classes/META-INF/db-example.kotlin_module

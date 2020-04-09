@@ -11,6 +11,17 @@ public class Employee {
     private Date birthDate;
     private Date hireDate;
 
+    public Employee() {
+    }
+
+    public Employee(String name, String lastName, String gender, Date birthDate, Date hireDate) {
+        this.name = name;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.birthDate = birthDate;
+        this.hireDate = hireDate;
+    }
+
     public String getName() {
         return name;
     }
