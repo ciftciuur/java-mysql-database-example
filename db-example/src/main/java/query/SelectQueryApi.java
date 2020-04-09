@@ -28,5 +28,27 @@ public class SelectQueryApi {
         return lastId;
     }
 
+    /*
+    bu fonksiyon dışarıdan parametre olarak verılmıs olan id'nin veritabanında olup olmadıgına bakar
+    eger verilen id'de kayıt varsa o kaydın recordId'sını döner
+
+    --- Neden bu fonksiyonu kullanmalıyız ----
+    1-> Kayıt silerken o kaydın veritabanında olup olmadığı önemlidir çünkü olmayan kayıdı silmeye calısırsak hata alırız
+    2-> Kayıt eklerken aynı id'de kayıt olabilir bu seferde hata alırız  ve kayıt ekleyemeyebiliriz
+     */
+    public static Integer findByEmployeeId(int id, Connection connection) {
+        Integer recordId = null;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id= ?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                recordId = resultSet.getInt(1);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return recordId;
+    }
 
 }
