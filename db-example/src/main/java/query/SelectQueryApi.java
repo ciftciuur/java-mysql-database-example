@@ -35,6 +35,7 @@ public class SelectQueryApi {
     --- Neden bu fonksiyonu kullanmalıyız ----
     1-> Kayıt silerken o kaydın veritabanında olup olmadığı önemlidir çünkü olmayan kayıdı silmeye calısırsak hata alırız
     2-> Kayıt eklerken aynı id'de kayıt olabilir bu seferde hata alırız  ve kayıt ekleyemeyebiliriz
+    3-> Kayıt güncellerken o kaydın olup olmadığı önemlidir sonuçta kayıt yoksa eğer güncelleme işlemi yapılmaz o kaydın ılk eklenmesi gerekir
      */
     public static Integer findByEmployeeId(int id, Connection connection) {
         Integer recordId = null;
