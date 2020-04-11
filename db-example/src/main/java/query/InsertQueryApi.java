@@ -1,5 +1,6 @@
 package query;
 
+import config.DbConnectionManagement;
 import entity.Employee;
 import validate.ConnectionValidate;
 
@@ -13,16 +14,16 @@ public class InsertQueryApi {
     /*
        Bu fonksiyon dışarıdan parametre olarak verılmıs olan kullanıcıyı veritabanına kayıt eder
     */
-    public static void insertOneRecord(Employee employee, Connection connection) {
+    public static void insertOneRecord(Employee employee) {
         try {
             if (employee != null) {//gönderilen kaydın boş olup olmamasına bakıldı
-                if (ConnectionValidate.validateConnection(connection)) {//baglantının basarılı ıle true
-                    PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO employee (id,name,lastName,gender,birthDate,hireDate) VALUES (?,?,?,?,?,?)");
+                if (ConnectionValidate.validateConnection(DbConnectionManagement.connectToDatabase())) {//baglantının basarılı ıle true
+                    PreparedStatement preparedStatement = DbConnectionManagement.connectToDatabase().prepareStatement("INSERT INTO employee (id,name,lastName,gender,birthDate,hireDate) VALUES (?,?,?,?,?,?)");
                 /*
                     TODO burada son kayıdı bulup idsini alıp yenı kayıt ekleren son kaydın id'sini +1 yapmak gereklı auto +1 yükselicek her personel kaydı
                  */
                     //son eklenen kaydın ıdsını aldı 1 arttırıp yeni kayıt oluşturdu
-                    preparedStatement.setLong(1, SelectQueryApi.resultLastRecordId(connection) + 1);
+                    preparedStatement.setLong(1, SelectQueryApi.resultLastRecordId() + 1);
 
                     preparedStatement.setString(2, employee.getName());
                     preparedStatement.setString(3, employee.getLastName());

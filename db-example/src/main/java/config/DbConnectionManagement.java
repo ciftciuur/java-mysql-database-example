@@ -14,12 +14,6 @@ public class DbConnectionManagement {
         try {
             Class.forName(DbConnectionConfigParam.getJdbcDriver());
             dbConnection = DriverManager.getConnection(DbConnectionConfigParam.getDbHost(), DbConnectionConfigParam.getDbUsername(), DbConnectionConfigParam.getDbUserPassword());
-
-            if (dbConnection != null) {
-                System.out.println("Veritabanına baglanıldı");
-            } else {
-                System.out.println("Veritabanına erişim hatalı");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }

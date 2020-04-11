@@ -1,5 +1,6 @@
 package query;
 
+import config.DbConnectionManagement;
 import entity.Employee;
 
 import java.sql.Connection;
@@ -8,13 +9,13 @@ import java.sql.PreparedStatement;
 
 public class UpdateQueryApi {
 
-    public static void updateRecord(Employee employee, Connection connection) {
+    public static void updateRecord(Employee employee) {
         try {
 
             //employee id'de kayıt varsa eğer guncelleme işlemi yapılıcak
-            if (SelectQueryApi.findByEmployeeId(employee.getId().intValue(), connection) != null) {
+            if (SelectQueryApi.findByEmployeeId(employee.getId().intValue()) != null) {
                 PreparedStatement preparedStatement =
-                        connection.prepareStatement("UPDATE employee SET name = ?, lastName = ?, gender = ?, birthDate= ?,hireDate= ? WHERE id = ? ");
+                        DbConnectionManagement.connectToDatabase().prepareStatement("UPDATE employee SET name = ?, lastName = ?, gender = ?, birthDate= ?,hireDate= ? WHERE id = ? ");
 
                 preparedStatement.setString(1, employee.getName());
                 preparedStatement.setString(2, employee.getLastName());

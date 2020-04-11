@@ -1,5 +1,6 @@
 package query;
 
+import config.DbConnectionManagement;
 import entity.Employee;
 import validate.ConnectionValidate;
 
@@ -15,10 +16,10 @@ public class SelectQueryApi {
          bu fonksiyon dışarıdan gelen tablo içindeki en son kaydın recordId'sını döner
          fonksiyonun yazılma nedeni kayıt eklenirken son id'li kaydın recordId'sını 1 arttırabılmek için
      */
-    public static int resultLastRecordId(Connection connection) {
+    public static int resultLastRecordId() {
         int lastId = 0;
         try {
-            Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            Statement statement = DbConnectionManagement.connectToDatabase().createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
             ResultSet resultSet = statement.executeQuery("SELECT id FROM employee");
             resultSet.last();
             lastId = resultSet.getInt(1);
@@ -37,10 +38,10 @@ public class SelectQueryApi {
     2-> Kayıt eklerken aynı id'de kayıt olabilir bu seferde hata alırız  ve kayıt ekleyemeyebiliriz
     3-> Kayıt güncellerken o kaydın olup olmadığı önemlidir sonuçta kayıt yoksa eğer güncelleme işlemi yapılmaz o kaydın ılk eklenmesi gerekir
      */
-    public static Integer findByEmployeeId(int id, Connection connection) {
+    public static Integer findByEmployeeId(int id) {
         Integer recordId = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM employee WHERE id= ?");
+            PreparedStatement preparedStatement = DbConnectionManagement.connectToDatabase().prepareStatement("SELECT * FROM employee WHERE id= ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
